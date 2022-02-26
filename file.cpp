@@ -1,20 +1,15 @@
 //
 // Created by Joe Geezer on 26/02/2022.
-// Create a sqlite database if one doesn't exist
+//
 
-#include <sqlite3.h>
-#include <fstream>
-#include <filesystem>
-#include <string>
-#include <dirent.h>
-#include <iostream>
-#include "db_conn.h"
+#include "file.h"
 
 using std::string;
 namespace fs = std::filesystem;
 
 /**
- * "/Users/joegeezer/Library/Application Support/Ticket Manager"
+ * @private
+ * @details "~/Library/Application Support/Ticket Manager"
  * @return
  */
 string get_app_dir_path()
@@ -25,7 +20,10 @@ string get_app_dir_path()
     return root + "/" + app_name;
 }
 
-
+/**
+ * @private
+ * @return
+ */
 int create_app_support_folder()
 {
     string dir_name;
@@ -50,11 +48,11 @@ int create_app_support_folder()
 }
 
 /**
- *
+ * @public
  * @param name
  * @return
  */
-bool create_db_if_not_exist(char *name)
+bool create_file_if_not_exist(const string& name)
 {
     int has_directory = {0};
     has_directory = create_app_support_folder();
@@ -63,8 +61,7 @@ bool create_db_if_not_exist(char *name)
         return false;
     }
     string dir_name = get_app_dir_path();
-    string db_name = "tm_sqlite";
-    string db_conn_str = dir_name + "/" + db_name + ".txt";
+    string db_conn_str = dir_name + "/" + name + ".txt";
 
     std::fstream filestream;
     if(std::filesystem::exists(db_conn_str))
@@ -75,6 +72,6 @@ bool create_db_if_not_exist(char *name)
     filestream.open(db_conn_str, std::ios::out);
     filestream.close();
 
-    std::cout << "- Database successfully created at" << db_name << "\n";
+    std::cout << "- Database successfully created at" << name << "\n";
     return true;
 }
