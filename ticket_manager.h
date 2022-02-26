@@ -2,6 +2,8 @@
 // Created by Joe Gasewicz on 26/02/2022.
 //
 #include <string>
+#include <sqlite_orm/sqlite_orm.h>
+
 
 #ifndef TICKET_MANAGER_H
 #define TICKET_MANAGER_H
