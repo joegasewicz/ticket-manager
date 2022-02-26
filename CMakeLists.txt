@@ -15,6 +15,6 @@ add_executable(
         ticket_manager
         main.cpp
         ticket_manager.h ticket_manager.cpp
-        db_conn.cpp db_conn.h
-)
+        database.cpp database.h
+        file.cpp file.h)
 target_link_libraries(ticket_manager sqlite_orm::sqlite_orm)
