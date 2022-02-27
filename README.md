@@ -2,3 +2,9 @@
 
 
 ### Features
+
+
+### Build
+```bash
+cmake .
+```

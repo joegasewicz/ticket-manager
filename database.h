@@ -11,13 +11,19 @@
 
 class Database {
 public:
+
     explicit Database();
+
     void init();
 
     sqlite3* get_db();
 
+    bool close();
+
 private:
+
     sqlite3* _tm_db;
+
     void set_db(sqlite3 *tm_db);
 };
 

@@ -4,18 +4,25 @@
 
 #include "ticket_manager.h"
 
-
-TicketManager::TicketManager(char name[])
-{
-    strcpy(_name, name);
+TicketManager::TicketManager() {
+    // init events
 };
 
-void TicketManager::set_name(char name[])
-{
-    strcpy(_name, name);
-};
 
-char *TicketManager::get_name()
+void TicketManager::init()
 {
-    return _name;
-};
+    int userOpt;
+    std::cout << "========\n";
+    std::cout << "Options:\n";
+    std::cout << "========\n\n";
+    std::cout << "1. Create Ticket\n";
+    std::cout << "0. Exit\n";
+    std::cin >> userOpt;
+    _opt_val = userOpt;
+
+
+    while (_tm_is_running > 0)
+    {
+    }
+}
+
