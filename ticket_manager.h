@@ -2,21 +2,31 @@
 // Created by Joe Gasewicz on 26/02/2022.
 //
 #include <string>
+#include <iostream>
 #include <sqlite_orm/sqlite_orm.h>
+
+#define TM_IS_RUNNING 1
 
 
 #ifndef TICKET_MANAGER_H
 #define TICKET_MANAGER_H
 
+enum class TMEvents {
+    CREATE_TICKET,
+    EXIT
+};
+
 class TicketManager
 {
 public:
-    explicit TicketManager(char name[]);
-    void set_name(char name[]);
-    char *get_name();
+
+     TicketManager();
+
+    void init();
 
 private:
-    char _name[];
+    int _opt_val;
+    int _tm_is_running;
 };
 
 #endif //TICKET_MANAGER_H

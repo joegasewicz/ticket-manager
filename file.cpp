@@ -4,26 +4,20 @@
 
 #include "file.h"
 
+
 using std::string;
 namespace fs = std::filesystem;
 
-/**
- * @private
- * @details "~/Library/Application Support/Ticket Manager"
- * @return
- */
+
+/** @details "~/Library/Application Support/Ticket Manager" */
 string get_app_dir_path()
 {
     string dir_name;
-    string root = "/Users/joegeezer/Library/Application Support";
+    string root = "/Users/joegeezer/Library/Application Support"; // TODO get user root
     string app_name = "Ticket Manager";
     return root + "/" + app_name;
 }
 
-/**
- * @private
- * @return
- */
 int create_app_support_folder()
 {
     string dir_name;
@@ -47,11 +41,6 @@ int create_app_support_folder()
 
 }
 
-/**
- * @public
- * @param name
- * @return
- */
 bool create_file_if_not_exist(const string& name)
 {
     int has_directory = {0};
@@ -66,12 +55,12 @@ bool create_file_if_not_exist(const string& name)
     std::fstream filestream;
     if(std::filesystem::exists(db_conn_str))
     {
-        std::cout << "Database already exists" << "\n";
+        std::cout << "File already exists" << "\n";
         return true;
     }
     filestream.open(db_conn_str, std::ios::out);
     filestream.close();
 
-    std::cout << "- Database successfully created at" << name << "\n";
+    std::cout << "- File successfully created at" << name << "\n";
     return true;
 }

@@ -8,19 +8,16 @@ int main() {
     Database database{};
     database.init();
 
-    bool is_conn = true;
-    if (!is_conn)
+    TicketManager ticket_manager{};
+
+    // Init ticket manager
+    ticket_manager.init();
+
+    // Close db
+    bool db_did_close = database.close();
+    if (!db_did_close)
     {
-        std::cout << "Error creating database" << "\n";
         exit(EXIT_FAILURE);
     }
-
-    TicketManager ticketManager {"hello"};
-
-    std::cout << ticketManager.get_name() << std::endl;
-
-    ticketManager.set_name("goodbye");
-
-    std::cout << ticketManager.get_name() << std::endl;
     return 0;
 }

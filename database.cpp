@@ -12,26 +12,28 @@ Database::Database()
 
 }
 
-/**
- * @param tm_db
- */
 void Database::set_db(sqlite3 *tm_db)
 {
     _tm_db = tm_db;
 };
 
-/**
- * @return sqlite3*
- */
 sqlite3* Database::get_db()
 {
     return _tm_db;
 };
 
-/**
- * @details Create a sqlite3 database & set Database.tm_db
- * @return
- */
+bool Database::close()
+{
+    int close_ok = sqlite3_close(_tm_db);
+    if (close_ok != SQLITE_OK)
+    {
+        std::cout << "Error closing databse." << "\n";
+        return false;
+    }
+    std::cout << "Database successfully closed." << "\n";
+    return true;
+};
+
 void Database::init()
 {
     sqlite3* tm_db;
